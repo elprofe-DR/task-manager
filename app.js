@@ -30,4 +30,4 @@ const start = async () => {
   }
 }
 // console.log(process.env.MONGODB_URI)
-start()
+start();
