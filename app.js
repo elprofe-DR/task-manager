@@ -3,15 +3,14 @@ const express = require('express')
 const app = express()
 const tasks = require('./routes/tasks.js')
 require('dotenv').config()
+const notFound = require("./middleWare/notfound.js")
 //middleware
+app.use(express.static('./public'))
 app.use(express.json())
 
 //routes
-app.get('/hello', (req, res) => {
-  res.status(200).send('Task Manager App')
-})
-
 app.use('/api/v1/tasks', tasks)
+app.use(notFound)
 
 //app.get('/api/v1/tasks') ---get all the tasks
 //app.post('/api/v1/tasks') ---create a new tasks
@@ -29,5 +28,5 @@ const start = async () => {
     console.log(e);
   }
 }
-// console.log(process.env.MONGODB_URI)
+// console.log(process.env.MONGODB_URI)😠
 start();
